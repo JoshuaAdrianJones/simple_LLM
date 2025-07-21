@@ -5,7 +5,10 @@ Starter pack for using local LLMs with Ollama, providing structured chat integra
 
 ## Project Structure
 - `main.py` - Core Ollama chat integration with Pydantic models
-- `.devcontainer/` - VS Code development container configuration
+- `.devcontainer/` - VS Code development container configuration  
+- `.github/workflows/` - CI/CD pipeline with ruff checks
+- `pyproject.toml` - Project configuration and ruff settings
+- `requirements.txt` - Python dependencies
 - `CLAUDE.md` - Project documentation and development context
 
 ## Development Environment
@@ -52,9 +55,16 @@ print(response.content)
 
 ## Development Setup
 1. Ensure Ollama is running on host machine (`ollama serve`)
-2. Open project in VS Code with Dev Containers extension
-3. Container will automatically configure to use host Ollama instance
-4. Install dependencies: `pip install ollama pydantic`
+2. Install dependencies: `pip install -r requirements.txt`
+3. For containerized development:
+   - Open project in VS Code with Dev Containers extension
+   - Container will automatically configure to use host Ollama instance
+   - Dependencies are installed automatically via postCreateCommand
+
+## Code Quality
+- **Ruff**: Configured for linting and formatting with comprehensive rule set
+- **CI/CD**: GitHub Actions workflow runs on push/PR to main branch
+- **Standards**: Follows conventional commit messages and Python best practices
 
 ## Model Configuration
 Available models are configured in `main.py`:
