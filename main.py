@@ -10,7 +10,7 @@ models = {
     "qwen": "qwen3:8b",
     "gemma": "gemma3:12b",
     "llama": "llama3.2:3b-instruct-fp16",
-    "embed": "mxbai-embed-large:latest"
+    "embed": "mxbai-embed-large:latest",
 }
 
 
@@ -34,5 +34,10 @@ def generate_general_output(model, model_temperature, prompt, system_prompt):
     return GeneralOutput.model_validate_json(response.message.content)
 
 
-msg = generate_general_output(models["qwen"], 0.7, "What is the capital of France?", "You are a helpful assistant.")
+msg = generate_general_output(
+    models["qwen"],
+    0.7,
+    "What is the capital of France?",
+    "You are a helpful assistant.",
+)
 print(msg.content)  # Should print the capital of France
