@@ -1,26 +1,17 @@
-# Claude Code Terminal Environment Context
+# Simple LLM Project
 
-## System Information
-- **Platform**: macOS (Darwin 24.4.0)
-- **Architecture**: arm64 (Apple Silicon)
-- **Working Directory**: /Users/josh
-- **Git Repository**: Not initialized
+## Project Overview
+Starter pack for using local LLMs with Ollama, providing structured chat integration and development environment configuration.
 
-## Shell Environment
-- **Terminal**: iTerm2
-- **Shell**: zsh 5.9 (arm64-apple-darwin24.0)
-- **Framework**: oh-my-zsh
-- **Shell Path**: /bin/zsh
+## Project Structure
+- `main.py` - Core Ollama chat integration with Pydantic models
+- `.devcontainer/` - VS Code development container configuration
+- `CLAUDE.md` - Project documentation and development context
 
-## Package Managers & Tools
-- **Homebrew**: 4.5.10 (installed at /opt/homebrew/bin/brew)
-- **Ollama**: 0.9.6 (installed at /usr/local/bin/ollama)
-
-## Available Commands
-- `brew` - Package management for macOS
-- `ollama` - Local LLM inference engine
-- Standard Unix/macOS command line tools
-- zsh built-ins and oh-my-zsh plugins
+## Development Environment
+- **Platform**: macOS (Darwin 24.4.0) with Apple Silicon support
+- **Containerized Development**: Uses devcontainer with host Ollama integration
+- **Dependencies**: Python 3.11, Ollama client library, Pydantic for structured output
 
 ## Ollama Configuration
 ### Available Models
@@ -44,32 +35,30 @@ curl -X POST http://localhost:11434/api/generate \
   -d '{"model": "qwen3:8b", "prompt": "Your prompt here"}'
 ```
 
-## Use Cases for Ollama + Claude Code Integration
+## Usage
+The main.py file demonstrates structured chat interaction:
+```python
+from main import generate_general_output, models
 
-### 1. Code Review Assistant
-Build tools that use local models to review code changes, suggest improvements, and check for patterns without sending code to external services.
+# Generate structured response
+response = generate_general_output(
+    model=models["qwen"],
+    model_temperature=0.7,
+    prompt="Your question here",
+    system_prompt="You are a helpful assistant."
+)
+print(response.content)
+```
 
-### 2. Documentation Generator
-Create scripts that use Ollama models to generate documentation from code comments and structure, keeping everything local for sensitive projects.
+## Development Setup
+1. Ensure Ollama is running on host machine (`ollama serve`)
+2. Open project in VS Code with Dev Containers extension
+3. Container will automatically configure to use host Ollama instance
+4. Install dependencies: `pip install ollama pydantic`
 
-### 3. Custom Chat Interfaces
-Build domain-specific coding assistants using local models fine-tuned for specific frameworks or languages.
-
-### 4. Code Explanation Tools
-Develop utilities that explain complex codebases using local LLMs, useful for onboarding or legacy code understanding.
-
-### 5. Automated Testing
-Create test generators that use local models to create comprehensive test suites based on code analysis.
-
-### 6. Semantic Code Search
-Use embedding models (mxbai-embed-large) to build semantic code search tools that understand context beyond keyword matching.
-
-### 7. Code Translation
-Build tools to translate code between programming languages using local models, ensuring code privacy.
-
-### 8. Local AI-Powered Git Hooks
-Create git hooks that use local models for commit message generation, code quality checks, or automated changelog updates.
-
-## Notes
-- Homebrew prefix: /opt/homebrew (Apple Silicon)
-- oh-my-zsh configuration directory: ~/.oh-my-zsh
+## Model Configuration
+Available models are configured in `main.py`:
+- **qwen**: qwen3:8b - General purpose multilingual model
+- **gemma**: gemma3:12b - Strong reasoning capabilities  
+- **llama**: llama3.2:3b-instruct-fp16 - Instruction-following optimized
+- **embed**: mxbai-embed-large - Text embedding model
