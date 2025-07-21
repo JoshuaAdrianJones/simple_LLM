@@ -6,10 +6,38 @@ build-backend = "hatchling.build"
 name = "simple-llm"
 version = "0.1.0"
 description = "Starter pack for using local LLMs with Ollama"
-dependencies = [
-    "ollama",
-    "pydantic"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Joshua Adrian Jones", email = "joshua@example.com" }
 ]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["ollama", "llm", "ai", "chat", "pydantic"]
+requires-python = ">=3.11"
+dependencies = [
+    "ollama>=0.3.0",
+    "pydantic>=2.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "pytest>=7.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/JoshuaAdrianJones/simple_LLM"
+Repository = "https://github.com/JoshuaAdrianJones/simple_LLM"
+Issues = "https://github.com/JoshuaAdrianJones/simple_LLM/issues"
 
 [tool.ruff]
 line-length = 88
